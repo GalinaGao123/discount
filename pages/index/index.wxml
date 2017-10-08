@@ -1,0 +1,98 @@
+<!--index.wxml-->
+<import src="../common/list.wxml"/>
+<import src="../common/top.wxml"/>
+
+<scroll-view class="container scroll-container" scroll-y scroll-with-animation scroll-into-view="{{ toView }}" bindscroll="scrollHandle" bindscrolltolower="loadMore">
+  <view class="search-form" id="search">
+    <form bindsubmit="searchItems">
+      <view class="search-box" >
+        <input confirm-type="search" type="text" name="search" placeholder="输入宝贝名称搜索" value="{{ str }}" bindconfirm="enter"/>
+        <button class="search-btn" form-type="submit">
+          <icon type="search" color="#ffffff" size="20"/>
+        </button>
+      </view>
+    </form>
+  </view>
+  <view class="category">
+    <view class="tab {{ currentTab==='' ? 'current-tab' : '' }}" bindtap="changeTab" id="">
+      <image class="tab-img" src="../../images/all.png"></image>
+      <text>全部</text>
+    </view>
+    <view class="tab {{ currentTab==='女装' ? 'current-tab' : '' }}" bindtap="changeTab" id="女装">
+      <image class="tab-img" src="../../images/women.png"></image>
+      <text>女装</text>
+    </view>
+    <view class="tab {{ currentTab==='男装' ? 'current-tab' : '' }}" bindtap="changeTab" id="男装">
+      <image class="tab-img" src="../../images/men.png"></image>
+      <text>男装</text>
+    </view>
+    <view class="tab {{ currentTab==='内衣' ? 'current-tab' : '' }}" bindtap="changeTab" id="内衣">
+      <image class="tab-img" src="../../images/bra.png"></image>
+      <text>内衣</text>
+    </view>
+    <view class="tab {{ currentTab==='鞋包' ? 'current-tab' : '' }}" bindtap="changeTab" id="鞋包">
+      <image class="tab-img" src="../../images/shoes.png"></image>
+      <text>鞋包</text>
+    </view>
+    <view class="tab {{ currentTab==='美妆' ? 'current-tab' : '' }}" bindtap="changeTab" id="美妆">
+      <image class="tab-img" src="../../images/makeup.png"></image>
+      <text>美妆</text>
+    </view>
+    <view class="tab {{ currentTab==='数码' ? 'current-tab' : '' }}" bindtap="changeTab" id="数码">
+      <image class="tab-img" src="../../images/camera.png"></image>
+      <text>数码</text>
+    </view>
+    <view class="tab {{ currentTab==='母婴' ? 'current-tab' : '' }}" bindtap="changeTab" id="母婴">
+      <image class="tab-img" src="../../images/baby.png"></image>
+      <text>母婴</text>
+    </view>
+    <view class="tab {{ currentTab==='居家' ? 'current-tab' : '' }}" bindtap="changeTab" id="居家">
+      <image class="tab-img" src="../../images/life.png"></image>
+      <text>居家</text>
+    </view>
+    <view class="tab {{ currentTab==='美食' ? 'current-tab' : '' }}" bindtap="changeTab" id="美食">
+      <image class="tab-img" src="../../images/food.png"></image>
+      <text>美食</text>
+    </view>
+    <view class="tab {{ currentTab==='其他' ? 'current-tab' : '' }}" bindtap="changeTab" id="其他">
+      <image class="tab-img" src="../../images/other.png"></image>
+      <text>其他</text>
+    </view>
+  </view>
+  <view class="filter-container" id="filter">
+    <view class="filter-box" style="{{ filterFixed ? 'position: fixed; top: 0' : 'static' }}">
+      <view class="item-filter">
+        <view class="filter {{ sort === 'itemId' ? 'current-tab' : '' }}" bindtap="changeOrder" data-sort="itemId">
+          <text>综合</text>
+        </view>
+        <view class="filter {{ sort === 'salesCount' ? 'current-tab' : '' }}" bindtap="changeOrder" data-sort="salesCount">
+          <text>销量</text>
+        </view>
+        <view class="filter {{ sort === 'price' ? 'current-tab' : '' }} {{ sort === 'price' ? orderClass : '' }}" bindtap="changeOrder" data-sort="price" data-exchange="change">
+          <text class="two-way">价格</text>
+          <view class="arrows">
+            <view class="top-arrow"></view>
+            <view class="bottom-arrow"></view>
+          </view>
+        </view>
+        <view class="filter {{ sort === 'couponPrice' ? 'current-tab' : '' }} {{ sort === 'couponPrice' ? orderClass : '' }}" bindtap="changeOrder" data-sort="couponPrice" data-exchange="change">
+          <text class="two-way">折扣</text>
+          <view class="arrows">
+            <view class="top-arrow"></view>
+            <view class="bottom-arrow"></view>
+          </view>
+        </view> 
+      </view> 
+    </view>
+  </view>
+  <template is="list" data="{{list: list}}"/>
+  <view class="no-results" wx:if="{{ noResult }}">没有结果</view>
+  <view class="spinner-container" wx:if="{{ loading }}">
+    <view class="spinner">
+      <view class="double-bounce1"></view>
+      <view class="double-bounce2"></view>
+    </view>
+  </view>
+  <view class="bottom" wx:if="{{ page === totalPage }}">我是有底线的</view>
+</scroll-view>
+<template is="top" data="{{ show }}"></template>

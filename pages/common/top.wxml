@@ -1,0 +1,5 @@
+<template name="top" data="{{ show }}">
+  <view class="to-top" bindtap="top" wx:if="{{ show }}">
+    <image src="../../images/top.png"></image>
+  </view>
+</template>

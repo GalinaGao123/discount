@@ -1,0 +1,32 @@
+.detail-container {
+  border-top: 2rpx solid #eee;
+}
+
+.swiper {
+  margin-bottom: 20rpx;
+}
+
+.detail-img {
+  width: 100%;
+}
+
+.sales-count {
+  font-size: 28rpx;
+}
+
+.create {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 0;
+  font-size: 32rpx;
+}
+
+.create.button-hover {
+  background: #e53430
+}
+
+.sales-count .shop {
+  max-width: 100%;
+}

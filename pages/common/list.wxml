@@ -1,0 +1,29 @@
+<template name="list">
+  <view class="items">
+    <view class="item" wx:for="{{list}}" wx:key="{{item.pid}}" bindtap="buyNow" data-id="{{ item.itemId }}">
+      <view class="item-img">
+        <image src="{{item.picture}}"></image>
+      </view>
+      <view class="item-detail">
+        <view class="item-title">{{item.title}}</view>
+        <view class="item-price">
+          <view class="price">
+            <text>原价：</text>
+            <text class="money">¥{{item.price}}</text>
+          </view>
+          <view class="coupon">
+            <image src="../../images/rs.png"></image>
+            <text class="money">¥{{item.couponPrice}}</text>
+          </view>
+        </view>
+        <view class="sales-count">
+          <text class="shop">店铺：{{item.shop}}</text>
+          <text class="count">销量：{{item.salesCount}}件</text>
+        </view>
+        <view class="buy-now">
+          <button type="warn">立即领取</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

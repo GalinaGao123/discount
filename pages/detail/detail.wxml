@@ -1,0 +1,35 @@
+<view class="detail-container container">
+  <view class="item-detail">
+    <swiper class="swiper" style="height: 520rpx" autoplay circular interval="3000" indicator-dots="true" indicator-color="rgba(253, 190, 52, 0.4)" indicator-active-color="#fdbe34">
+      <swiper-item>
+        <image src="{{ detail.picture }}" class="detail-img" mode="aspectFit"></image>
+      </swiper-item>
+      <view wx:if="{{ detail.smallImages }}">
+        <block wx:for="{{ detail.smallImages }}" wx:key="{{ item }}">
+          <swiper-item>
+            <image src="{{ item }}" class="detail-img" mode="aspectFit"></image>
+          </swiper-item>
+        </block>
+      </view>
+    </swiper>
+    <view class="item-detail">
+      <view class="item-title">{{detail.title}}</view>
+      <view class="item-price">
+        <view class="price">
+          <text>原价：</text>
+          <text class="money">¥{{detail.price}}</text>
+        </view>
+        <view class="coupon">
+          <image src="../../images/rs.png"></image>
+          <text class="money">¥{{detail.couponPrice}}</text>
+        </view>
+        </view>
+        <view class="sales-count">
+          <text class="shop">店铺：{{detail.shop}}</text>
+          <text class="count">销量：{{detail.salesCount}}件</text>
+        </view>
+      </view>
+    </view>
+    <button class="share-btn" open-type="share" size="mini">分享给好友</button>
+  <button wx:if="{{ btnShow }}" class="create" type="warn" bindtap="createModel">{{ btnText }}</button>
+</view>

@@ -1,0 +1,42 @@
+<!--index.wxml-->
+<import src="../common/list.wxml"/>
+<import src="../common/top.wxml"/>
+
+<scroll-view class="container scroll-container" scroll-y scroll-with-animation scroll-into-view="{{ toView }}" bindscroll="scrollHandle" bindscrolltolower="loadMore">
+  <view class="search-form" id="search">
+    <view class="search-box">
+      <input confirm-type="search" type="text" value="{{ str }}" placeholder="输入宝贝名称搜索" bindinput="handleInput" bindconfirm="searchItems"/>
+      <view class="search-btn">
+        <icon type="search" color="#ffffff" size="20" bindtap="searchItems"/>
+      </view>
+    </view>
+  </view>
+  <view class="filter-container" id="filter">
+    <view class="filter-box" style="{{ filterFixed ? 'position: fixed; top: 0' : 'static' }}">
+      <view class="item-filter">
+        <view class="filter {{ sort === 'itemId' ? 'current-tab' : '' }}" bindtap="changeOrder" data-sort="itemId">
+          <text>综合</text>
+        </view>
+        <view class="filter {{ sort === 'salesCount' ? 'current-tab' : '' }}" bindtap="changeOrder" data-sort="salesCount">
+          <text>销量</text>
+        </view>
+        <view class="filter {{ sort === 'price' ? 'current-tab' : '' }} {{ sort === 'price' ? orderClass : '' }}" bindtap="changeOrder" data-sort="price" data-exchange="change">
+          <text class="two-way">价格</text>
+        </view>
+        <view class="filter {{ sort === 'couponPrice' ? 'current-tab' : '' }} {{ sort === 'couponPrice' ? orderClass : '' }}" bindtap="changeOrder" data-sort="couponPrice" data-exchange="change">
+          <text class="two-way">折扣</text>
+        </view> 
+      </view> 
+    </view>
+  </view> 
+  <template is="list" data="{{list: list}}"/>
+  <view class="no-results" wx:if="{{ noResult }}">没有结果</view>
+  <view class="spinner-container" wx:if="{{ loading }}">
+    <view class="spinner">
+      <view class="double-bounce1"></view>
+      <view class="double-bounce2"></view>
+    </view>
+  </view>
+  <view class="bottom" wx:if="{{ page === totalPage }}">我是有底线的</view>
+</scroll-view>
+<template is="top" data="{{ show }}"/>
